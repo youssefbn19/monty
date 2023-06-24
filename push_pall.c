@@ -14,6 +14,8 @@ void push(stack_t **s, unsigned int line_number, int value)
 	if (s == NULL)
 	{
 		fprintf(stderr, "Can't find stack");
+		free(file.line);
+		fclose(file.fptr);
 		exit(EXIT_FAILURE);
 	}
 
@@ -21,6 +23,8 @@ void push(stack_t **s, unsigned int line_number, int value)
 	if (s_node == NULL)
 	{
 		fprintf(stderr, "malloc failed");
+		free(file.line);
+		fclose(file.fptr);
 		exit(EXIT_FAILURE);
 	}
 

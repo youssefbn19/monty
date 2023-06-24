@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-extern unsigned int line_number;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -36,11 +35,25 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/**
+ * struct file_handler - file pointer and its current line pointing to
+ * @fptr: file pointer
+ * @line: file current line value
+ */
+typedef struct file_handler
+{
+	FILE *fptr;
+	char *line;
+} file_h;
+extern file_h file;
+
 void read_lines(char *lines);
 void trim(char *buffer);
-void check_opcode(stack_t **s, char *line);
+void check_opcode(stack_t **s, unsigned int line_number);
 instruction_t get_opcode(char *op);
 void error_handler(char *str, unsigned int l);
+void free_stack(stack_t **s);
 void push(stack_t **s, unsigned int line_number, int value);
 void pall(stack_t **s, unsigned int line_number);
 void pint(stack_t **s, unsigned int line_number);

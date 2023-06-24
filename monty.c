@@ -1,5 +1,5 @@
 #include "monty.h"
-unsigned int line_number = 1;
+file_h file = {NULL, NULL};
 /**
  * main - entry point
  *
@@ -52,26 +52,27 @@ void trim(char *s)
  */
 void read_lines(char *f_name)
 {
-	FILE *fptr;
-	char *buffer;
+	unsigned int line_number = 1;
 	size_t size = 0;
 	stack_t *s = NULL;
 
-	fptr = fopen(f_name, "r");
-	if (fptr == NULL)
+	file.line = NULL;
+	file.fptr = fopen(f_name, "r");
+	if (file.fptr == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", f_name);
 		exit(EXIT_FAILURE);
 	}
 
-	while (getline(&buffer, &size, fptr) != -1)
+	while (getline(&file.line, &size, file.fptr) != -1)
 	{
-		trim(buffer);
-		if (strlen(buffer) > 0)
-			check_opcode(&s, buffer);
+		trim(file.line);
+		if (strlen(file.line) > 0)
+			check_opcode(&s, line_number);
 		line_number++;
 	}
-	free(buffer);
-	fclose(fptr);
+	free(file.line);
+	free_stack(&s);
+	fclose(file.fptr);
 }
 
