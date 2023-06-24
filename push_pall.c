@@ -22,7 +22,7 @@ void push(stack_t **s, unsigned int line_number, int value)
 	s_node = malloc(sizeof(stack_t));
 	if (s_node == NULL)
 	{
-		fprintf(stderr, "malloc failed");
+		fprintf(stderr, "Error: malloc failed");
 		free(file.line);
 		fclose(file.fptr);
 		exit(EXIT_FAILURE);
