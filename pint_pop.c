@@ -10,7 +10,7 @@ void pint(stack_t **s, unsigned int line_number)
 	if (s && *s)
 		printf("%d\n", (*s)->n);
 	else
-		error_handler("can't pint an empty stack", line_number);
+		error_handler("can't pint, an empty stack", line_number);
 }
 /**
  * pop - removes the top element of the stack.
