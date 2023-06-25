@@ -30,7 +30,7 @@ void check_opcode(stack_t **s, unsigned int line_number)
 	}
 	else
 	{
-		if (strcmp(opcode, "nop") != 0)
+		if (file.line[0] != '#')
 		{
 			inst = get_opcode(opcode);
 			if (inst.f == NULL && inst.opcode == NULL)
@@ -41,7 +41,7 @@ void check_opcode(stack_t **s, unsigned int line_number)
 				fclose(file.fptr);
 				exit(EXIT_FAILURE);
 			}
-			else if (inst.opcode != NULL)
+			else if (inst.f != NULL)
 			{
 				inst.f(s, line_number);
 			}
@@ -63,7 +63,7 @@ instruction_t get_opcode(char *op)
 					{"add", add}, {"nop", NULL},
 					{"sub", sub}, {"div", _div},
 					{"mul", mul}, {"mod", mod},
-					{NULL, NULL}};
+					{"#", NULL},{NULL, NULL}};
 	int i = 0;
 
 	while (opcode_list[i].opcode)
