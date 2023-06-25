@@ -61,6 +61,8 @@ instruction_t get_opcode(char *op)
 	instruction_t opcode_list[] = {{"pall", pall}, {"pint", pint},
 					{"pop", pop}, {"swap", swap},
 					{"add", add}, {"nop", NULL},
+					{"sub", sub}, {"div", _div},
+					{"mul", mul}, {"mod", mod},
 					{NULL, NULL}};
 	int i = 0;
 
