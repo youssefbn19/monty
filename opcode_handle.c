@@ -63,7 +63,8 @@ instruction_t get_opcode(char *op)
 					{"add", add}, {"nop", NULL},
 					{"sub", sub}, {"div", _div},
 					{"mul", mul}, {"mod", mod},
-					{"#", NULL},{NULL, NULL}};
+					{"#", NULL}, {"pchar", pchar},
+					{"pstr", pstr}, {NULL, NULL}};
 	int i = 0;
 
 	while (opcode_list[i].opcode)
